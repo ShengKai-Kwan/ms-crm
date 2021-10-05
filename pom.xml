@@ -13,6 +13,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ms-crm</name>
 	<description>Customer Relationship management</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>ms-crm-core</module>
+		<module>ms-crm-model</module>
+		<module>ms-crm-svc</module>
+	</modules>
+
 	<properties>
 		<java.version>1.8</java.version>
 		<lib-utility.version>0.0.1-SNAPSHOT</lib-utility.version>
@@ -21,10 +29,9 @@
 		<!-- Internal Lib -->
 		<dependency>
 			<groupId>com.dev.core</groupId>
-			<artifactId>lib-utility</artifactId>
-			<version>${lib-utility.version}</version>
+			<artifactId>lib-utility-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
 		<!-- Spring Lib -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,22 +51,5 @@
 			<version>2.4.4</version>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
