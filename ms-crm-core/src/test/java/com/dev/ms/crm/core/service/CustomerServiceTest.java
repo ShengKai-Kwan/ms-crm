@@ -11,9 +11,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +33,16 @@ public class CustomerServiceTest {
     void init(){
         modelMapper = new ModelMapper();
         customerService = new CustomerService(customerRepo, modelMapper);
+    }
+
+    @Test
+    void When_Inquiry_Expect_Success(){
+        when(customerRepo.findAll())
+                .thenReturn(Arrays.asList(new Customer(), new Customer()));
+        List<CustomerDTO> result = customerService.inquiry();
+        assertThat(result.size()).isEqualTo(2);
+        verify(customerRepo, times(1))
+                .findAll();
     }
 
     @Test
