@@ -4,18 +4,18 @@ package com.dev.ms.crm.model.dto;
 import com.dev.core.lib.utility.core.model.dto.BaseEntityDTO;
 import lombok.*;
 
-import java.io.Serializable;
+import java.util.List;
 
 @Builder
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO extends BaseEntityDTO {
+public class  CustomerDTO extends BaseEntityDTO {
 
     private String name;
     private String contactNo;
     private String email;
     private String address;
-    private Serializable orderGroups;
+    private List<OrderGroupDTO> orderGroups;
 }

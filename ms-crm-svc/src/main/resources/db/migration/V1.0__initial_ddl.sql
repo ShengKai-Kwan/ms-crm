@@ -19,7 +19,7 @@ CREATE TABLE t_promotion (
     start_dt timestamptz NOT NULL,
     end_dt timestamptz NULL,
     promotion_type varchar(255),
-    promotion_rate real NULL,
+    promotion_rate NUMERIC(9,2) NULL,
     created_time timestamptz NULL,
     updated_time timestamptz NULL,
     version int4 NULL,
@@ -32,7 +32,7 @@ CREATE TABLE t_promotion (
 CREATE TABLE t_order_group (
     id uuid NOT NULL,
     delivery_time timestamptz NULL,
-    amount real NULL,
+    amount NUMERIC(9,2) NULL,
     address varchar(255) NULL,
     remarks text NULL,
     customer_id uuid NULL,
@@ -51,8 +51,8 @@ CREATE TABLE t_order_group (
 CREATE TABLE t_order_item (
     id uuid NOT NULL,
     name varchar(255) NULL,
-    unit_price real NULL,
-    final_price real NULL,
+    unit_price NUMERIC(9,2) NULL,
+    final_price NUMERIC(9,2) NULL,
     remarks text NULL,
     order_grp_id uuid NULL,
     promotion_id uuid NULL,

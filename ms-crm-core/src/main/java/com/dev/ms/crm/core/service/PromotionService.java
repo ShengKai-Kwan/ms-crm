@@ -2,11 +2,10 @@ package com.dev.ms.crm.core.service;
 
 import com.dev.core.lib.utility.core.exception.GenericErrorException;
 import com.dev.core.lib.utility.core.model.enums.Status;
-import com.dev.ms.crm.core.entity.Customer;
+import com.dev.ms.crm.core.entity.Promotion;
 import com.dev.ms.crm.core.exception.CrmErrorEnum;
-import com.dev.ms.crm.core.repository.CustomerRepository;
-import com.dev.ms.crm.model.dto.CustomerDTO;
-import com.dev.ms.crm.model.dto.OrderGroupDTO;
+import com.dev.ms.crm.core.repository.PromotionRepository;
+import com.dev.ms.crm.model.dto.PromotionDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,47 +18,47 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CustomerService {
+public class PromotionService {
 
     @Autowired
-    private CustomerRepository customerRepo;
+    private PromotionRepository promotionRepo;
 
     @Autowired
     @Qualifier("baseModelMapper")
     private ModelMapper baseModelMapper;
 
-    public List<CustomerDTO> inquiry(){
-        return customerRepo.findAll().stream()
-                .map(record -> baseModelMapper.map(record, CustomerDTO.class))
+    public List<PromotionDTO> inquiry(){
+        return promotionRepo.findAll().stream()
+                .map(record -> baseModelMapper.map(record, PromotionDTO.class))
                 .collect(Collectors.toList());
     }
 
-    public CustomerDTO insert(CustomerDTO customerDTO){
+    public PromotionDTO insert(PromotionDTO promotionDTO){
 
-        if(null != customerDTO.getId() && customerRepo.existsById(customerDTO.getId()))
+        if(null != promotionDTO.getId() && promotionRepo.existsById(promotionDTO.getId()))
             throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_ALREADY_EXIST);
 
-        Customer customer = baseModelMapper.map(customerDTO, Customer.class);
+        Promotion promotion = baseModelMapper.map(promotionDTO, Promotion.class);
         return baseModelMapper.map(
-                customerRepo.saveAndFlush(customer),
-                CustomerDTO.class);
+                promotionRepo.saveAndFlush(promotion),
+                PromotionDTO.class);
     }
 
-    public CustomerDTO update(CustomerDTO customerDTO){
-        if(null == customerDTO.getId() || !customerRepo.existsById(customerDTO.getId()))
+    public PromotionDTO update(PromotionDTO promotionDTO){
+        if(null == promotionDTO.getId() || !promotionRepo.existsById(promotionDTO.getId()))
             throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_NOT_FOUND);
 
-        Customer customer = baseModelMapper.map(customerDTO, Customer.class);
+        Promotion promotion = baseModelMapper.map(promotionDTO, Promotion.class);
         return baseModelMapper.map(
-                customerRepo.saveAndFlush(customer),
-                CustomerDTO.class);
+                promotionRepo.saveAndFlush(promotion),
+                PromotionDTO.class);
     }
 
     public void delete(UUID id){
-        customerRepo.findById(id)
+        promotionRepo.findById(id)
                 .ifPresent(record -> {
                     record.setStatus(Status.DELETED);
-                    customerRepo.saveAndFlush(record);
+                    promotionRepo.saveAndFlush(record);
                 });
     }
 }

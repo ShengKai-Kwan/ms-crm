@@ -6,7 +6,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -31,7 +32,7 @@ public class OrderGroup extends BaseEntity {
     private String remarks;
 
     @OneToMany(mappedBy = "orderGroup")
-    private Set<OrderItem> orderItems;
+    private List<OrderItem> orderItems;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "customer_id",

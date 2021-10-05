@@ -5,7 +5,8 @@ import com.dev.core.lib.utility.core.model.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -30,5 +31,5 @@ public class Customer extends BaseEntity {
     private String address;
 
     @OneToMany(mappedBy = "customer")
-    private Set<OrderGroup> orderGroups;
+    private List<OrderGroup> orderGroups;
 }
