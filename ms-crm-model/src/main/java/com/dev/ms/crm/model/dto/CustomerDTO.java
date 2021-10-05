@@ -1,7 +1,7 @@
 package com.dev.ms.crm.model.dto;
 
 
-import com.dev.core.lib.utility.model.dto.BaseEntityDTO;
+import com.dev.core.lib.utility.core.model.dto.BaseEntityDTO;
 import lombok.*;
 
 import java.io.Serializable;

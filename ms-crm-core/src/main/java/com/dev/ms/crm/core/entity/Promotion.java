@@ -1,7 +1,7 @@
 package com.dev.ms.crm.core.entity;
 
 
-import com.dev.core.lib.utility.model.entity.BaseEntity;
+import com.dev.core.lib.utility.core.model.entity.BaseEntity;
 import com.dev.ms.crm.model.enums.PromotionType;
 import lombok.*;
 

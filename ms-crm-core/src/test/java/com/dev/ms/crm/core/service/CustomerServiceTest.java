@@ -1,0 +1,80 @@
+package com.dev.ms.crm.core.service;
+
+import com.dev.core.lib.utility.core.model.enums.Status;
+import com.dev.ms.crm.core.entity.Customer;
+import com.dev.ms.crm.core.repository.CustomerRepository;
+import com.dev.ms.crm.model.dto.CustomerDTO;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class CustomerServiceTest {
+
+    private CustomerService customerService;
+
+    private ModelMapper modelMapper;
+
+    @Mock
+    CustomerRepository customerRepo;
+
+    @BeforeEach
+    void init(){
+        modelMapper = new ModelMapper();
+        customerService = new CustomerService(customerRepo, modelMapper);
+    }
+
+    @Test
+    void When_Insert_Expect_Success(){
+        CustomerDTO customerDTO = new CustomerDTO();
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+        when(customerRepo.saveAndFlush(customer))
+                .thenReturn(customer);
+        customerService.insert(customerDTO);
+        verify(customerRepo, times(1))
+                .saveAndFlush(customer);
+    }
+
+    @Test
+    void When_Update_Expect_Success(){
+        UUID custId = UUID.randomUUID();
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(custId);
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+        when(customerRepo.existsById(custId))
+                .thenReturn(true);
+        when(customerRepo.saveAndFlush(customer))
+                .thenReturn(customer);
+        customerService.update(customerDTO);
+        verify(customerRepo, times(1))
+                .saveAndFlush(customer);
+    }
+
+    @Test
+    void When_Delete_Expect_Success(){
+        UUID custId = UUID.randomUUID();
+        Customer customer = new Customer();
+        customer.setId(custId);
+        customer.setStatus(Status.DELETED);
+
+        when(customerRepo.findById(custId))
+                .thenReturn(Optional.of(customer));
+        when(customerRepo.saveAndFlush(customer))
+                .thenReturn(customer);
+
+        customerService.delete(custId);
+
+        verify(customerRepo, times(1))
+                .findById(custId);
+        verify(customerRepo, times(1))
+                .saveAndFlush(customer);
+    }
+}
