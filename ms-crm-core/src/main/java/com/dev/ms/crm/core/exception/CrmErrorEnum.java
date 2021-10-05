@@ -1,6 +1,6 @@
 package com.dev.ms.crm.core.exception;
 
-import com.dev.core.lib.utility.exception.base.BaseError;
+import com.dev.core.lib.utility.core.exception.base.BaseError;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
