@@ -34,6 +34,10 @@ public class CustomerService {
     }
 
     public CustomerDTO insert(CustomerDTO customerDTO){
+
+        if(null != customerDTO.getId() && customerRepo.existsById(customerDTO.getId()))
+            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_ALREADY_EXIST);
+
         Customer customer = baseModelMapper.map(customerDTO, Customer.class);
         return baseModelMapper.map(
                 customerRepo.saveAndFlush(customer),
@@ -42,7 +46,7 @@ public class CustomerService {
 
     public CustomerDTO update(CustomerDTO customerDTO){
         if(null == customerDTO.getId() || !customerRepo.existsById(customerDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_NOT_FOUND);
+            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_NOT_FOUND);
 
         Customer customer = baseModelMapper.map(customerDTO, Customer.class);
         return baseModelMapper.map(

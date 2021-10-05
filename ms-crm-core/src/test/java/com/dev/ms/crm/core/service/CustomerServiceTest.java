@@ -48,10 +48,15 @@ public class CustomerServiceTest {
     @Test
     void When_Insert_Expect_Success(){
         CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(UUID.randomUUID());
         Customer customer = modelMapper.map(customerDTO, Customer.class);
+        when(customerRepo.existsById(customerDTO.getId()))
+                .thenReturn(false);
         when(customerRepo.saveAndFlush(customer))
                 .thenReturn(customer);
         customerService.insert(customerDTO);
+        verify(customerRepo, times(1))
+                .existsById(customerDTO.getId());
         verify(customerRepo, times(1))
                 .saveAndFlush(customer);
     }

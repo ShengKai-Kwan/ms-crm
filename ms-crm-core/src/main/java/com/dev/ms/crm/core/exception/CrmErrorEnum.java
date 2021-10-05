@@ -8,7 +8,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CrmErrorEnum implements BaseError {
 
-    CUSTOMER_NOT_FOUND("10001", "Customer Record Not Found");
+    CUSTOMER_RECORD_ALREADY_EXIST("10001", "Customer Record Not Found"),
+    CUSTOMER_RECORD_NOT_FOUND("10002", "Customer Record Not Found");
 
     private final String appCode = "CRM";
     private final String code;
