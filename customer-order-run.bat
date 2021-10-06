@@ -1,0 +1,1 @@
+java -jar -Xmx1024m "ms-customer-order-svc/target/ms-customer-order-svc.jar"
