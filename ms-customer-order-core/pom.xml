@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.dev.ms</groupId>
-		<artifactId>ms-crm</artifactId>
+		<artifactId>ms.customer.order</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.dev.ms</groupId>
-	<artifactId>ms-crm-core</artifactId>
-	<name>ms-crm-core</name>
+	<artifactId>ms-customer-order-core</artifactId>
+	<name>ms-customer-order-core</name>
 	<description>Customer Relationship Management Core</description>
 
 	<properties>
@@ -19,7 +19,7 @@
 		<!-- Internal Lib -->
 		<dependency>
 			<groupId>com.dev.ms</groupId>
-			<artifactId>ms-crm-model</artifactId>
+			<artifactId>ms-customer-order-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: ms-crm
+    name: ms-customer-order
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres

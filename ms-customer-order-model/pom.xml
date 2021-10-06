@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.dev.ms</groupId>
-		<artifactId>ms-crm</artifactId>
+		<artifactId>ms.customer.order</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.dev.ms</groupId>
-	<artifactId>ms-crm-model</artifactId>
-	<name>ms-crm-model</name>
+	<artifactId>ms-customer-order-model</artifactId>
+	<name>ms-customer-order-model</name>
 	<description>Customer Relationship Management Model</description>
 	<properties>
 		<java.version>1.8</java.version>

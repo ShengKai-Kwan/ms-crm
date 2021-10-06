@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan({
-		"com.dev.ms.crm",
+		"com.dev.ms.customer.order",
 		"com.dev.core.lib.utility"
 })
-@EnableJpaRepositories({"com.dev.ms.crm.core.repository"})
-@EntityScan({"com.dev.ms.crm.core.entity"})
+@EnableJpaRepositories({"com.dev.ms.customer.order.core.repository"})
+@EntityScan({"com.dev.ms.customer.order.core.entity"})
 public class MsCrmSvcApplication {
 
 	public static void main(String[] args) {

@@ -9,16 +9,16 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dev.ms</groupId>
-	<artifactId>ms-crm</artifactId>
+	<artifactId>ms.customer.order</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-crm</name>
+	<name>ms.customer.order</name>
 	<description>Customer Relationship management</description>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>ms-crm-core</module>
-		<module>ms-crm-model</module>
-		<module>ms-crm-svc</module>
+		<module>ms-customer-order-core</module>
+		<module>ms-customer-order-model</module>
+		<module>ms-customer-order-svc</module>
 	</modules>
 
 	<properties>
