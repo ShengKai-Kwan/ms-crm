@@ -2,6 +2,8 @@ server:
   port: 8088
 
 spring:
+  profiles:
+    active: container
   application:
     name: ms-customer-order
   datasource:
