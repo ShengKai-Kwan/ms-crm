@@ -28,13 +28,13 @@ public class OrderItem extends BaseEntity {
     @Column(name = "remarks")
     private String remarks;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_grp_id",
         foreignKey = @ForeignKey(name = "fk_order_detail_order_group_id")
     )
     private OrderGroup orderGroup;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "promotion_id",
             foreignKey = @ForeignKey(name = "fk_order_group_promotion_id")
     )

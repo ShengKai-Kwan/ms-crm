@@ -3,7 +3,7 @@ package com.dev.ms.customer.order.core.service;
 import com.dev.core.lib.utility.core.exception.GenericErrorException;
 import com.dev.core.lib.utility.core.model.enums.Status;
 import com.dev.ms.customer.order.core.entity.Promotion;
-import com.dev.ms.customer.order.core.exception.CrmErrorEnum;
+import com.dev.ms.customer.order.core.exception.CustomerOrderErrorEnum;
 import com.dev.ms.customer.order.core.repository.PromotionRepository;
 import com.dev.ms.customer.order.model.dto.PromotionDTO;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,7 @@ public class PromotionService {
     public PromotionDTO insert(PromotionDTO promotionDTO){
 
         if(null != promotionDTO.getId() && promotionRepo.existsById(promotionDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_ALREADY_EXIST);
+            throw new GenericErrorException(CustomerOrderErrorEnum.CUSTOMER_RECORD_ALREADY_EXIST);
 
         Promotion promotion = baseModelMapper.map(promotionDTO, Promotion.class);
         return baseModelMapper.map(
@@ -46,7 +46,7 @@ public class PromotionService {
 
     public PromotionDTO update(PromotionDTO promotionDTO){
         if(null == promotionDTO.getId() || !promotionRepo.existsById(promotionDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_NOT_FOUND);
+            throw new GenericErrorException(CustomerOrderErrorEnum.CUSTOMER_RECORD_NOT_FOUND);
 
         Promotion promotion = baseModelMapper.map(promotionDTO, Promotion.class);
         return baseModelMapper.map(

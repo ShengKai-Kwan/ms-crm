@@ -10,7 +10,8 @@ CREATE TABLE t_customer (
     created_by varchar(255) NOT NULL,
     updated_by varchar(255) NULL,
     status varchar(50) NULL,
-    CONSTRAINT customer_pkey PRIMARY KEY (id)
+    CONSTRAINT customer_pkey PRIMARY KEY (id),
+    CONSTRAINT customer_contact_no_unique UNIQUE (contact_no)
 );
 
 CREATE TABLE t_promotion (

@@ -13,10 +13,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 })
 @EnableJpaRepositories({"com.dev.ms.customer.order.core.repository"})
 @EntityScan({"com.dev.ms.customer.order.core.entity"})
-public class MsCrmSvcApplication {
+public class MsCustomerOrderSvcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsCrmSvcApplication.class, args);
+		SpringApplication.run(MsCustomerOrderSvcApplication.class, args);
 	}
 
 }

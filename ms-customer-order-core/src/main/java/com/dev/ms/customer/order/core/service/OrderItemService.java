@@ -5,7 +5,7 @@ import com.dev.core.lib.utility.core.model.enums.Status;
 import com.dev.ms.customer.order.core.entity.OrderGroup;
 import com.dev.ms.customer.order.core.entity.OrderItem;
 import com.dev.ms.customer.order.core.entity.Promotion;
-import com.dev.ms.customer.order.core.exception.CrmErrorEnum;
+import com.dev.ms.customer.order.core.exception.CustomerOrderErrorEnum;
 import com.dev.ms.customer.order.core.repository.OrderGroupRepository;
 import com.dev.ms.customer.order.core.repository.OrderItemRepository;
 import com.dev.ms.customer.order.core.repository.PromotionRepository;
@@ -45,7 +45,7 @@ public class OrderItemService {
 
     public OrderItemDTO insert(OrderItemDTO orderItemDTO){
         if(null != orderItemDTO.getId() && orderItemRepo.existsById(orderItemDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.ORDER_ITEM_RECORD_ALREADY_EXIST);
+            throw new GenericErrorException(CustomerOrderErrorEnum.ORDER_ITEM_RECORD_ALREADY_EXIST);
         OrderItem orderItem = constructOrderItem(orderItemDTO);
         return baseModelMapper.map(
                 orderItemRepo.saveAndFlush(orderItem),
@@ -54,7 +54,7 @@ public class OrderItemService {
 
     public OrderItemDTO update(OrderItemDTO orderItemDTO){
         if(null == orderItemDTO.getId() || !orderItemRepo.existsById(orderItemDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.ORDER_ITEM_RECORD_NOT_FOUND);
+            throw new GenericErrorException(CustomerOrderErrorEnum.ORDER_ITEM_RECORD_NOT_FOUND);
         OrderItem orderItem = constructOrderItem(orderItemDTO);
         return baseModelMapper.map(
                 orderItemRepo.saveAndFlush(orderItem),
@@ -71,12 +71,12 @@ public class OrderItemService {
 
     public OrderItem constructOrderItem(OrderItemDTO orderItemDTO){
         OrderGroup orderGroup = orderGroupRepo.findById(orderItemDTO.getOrderGroupId())
-                .orElseThrow(() -> new GenericErrorException(CrmErrorEnum.ORDER_GROUP_RECORD_NOT_FOUND));
+                .orElseThrow(() -> new GenericErrorException(CustomerOrderErrorEnum.ORDER_GROUP_RECORD_NOT_FOUND));
 
         Promotion promotion = null;
         if(null != orderItemDTO.getPromotionId()) {
             promotion = promotionRepo.findById(orderItemDTO.getPromotionId())
-                    .orElseThrow(() -> new GenericErrorException(CrmErrorEnum.PROMOTION_RECORD_NOT_FOUND));
+                    .orElseThrow(() -> new GenericErrorException(CustomerOrderErrorEnum.PROMOTION_RECORD_NOT_FOUND));
         }
 
         OrderItem orderItem = baseModelMapper.map(orderItemDTO, OrderItem.class);

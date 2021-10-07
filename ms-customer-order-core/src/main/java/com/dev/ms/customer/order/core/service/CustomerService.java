@@ -3,7 +3,7 @@ package com.dev.ms.customer.order.core.service;
 import com.dev.core.lib.utility.core.exception.GenericErrorException;
 import com.dev.core.lib.utility.core.model.enums.Status;
 import com.dev.ms.customer.order.core.entity.Customer;
-import com.dev.ms.customer.order.core.exception.CrmErrorEnum;
+import com.dev.ms.customer.order.core.exception.CustomerOrderErrorEnum;
 import com.dev.ms.customer.order.core.repository.CustomerRepository;
 import com.dev.ms.customer.order.model.dto.CustomerDTO;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,7 @@ public class CustomerService {
     public CustomerDTO insert(CustomerDTO customerDTO){
 
         if(null != customerDTO.getId() && customerRepo.existsById(customerDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_ALREADY_EXIST);
+            throw new GenericErrorException(CustomerOrderErrorEnum.CUSTOMER_RECORD_ALREADY_EXIST);
 
         Customer customer = baseModelMapper.map(customerDTO, Customer.class);
         return baseModelMapper.map(
@@ -46,7 +46,7 @@ public class CustomerService {
 
     public CustomerDTO update(CustomerDTO customerDTO){
         if(null == customerDTO.getId() || !customerRepo.existsById(customerDTO.getId()))
-            throw new GenericErrorException(CrmErrorEnum.CUSTOMER_RECORD_NOT_FOUND);
+            throw new GenericErrorException(CustomerOrderErrorEnum.CUSTOMER_RECORD_NOT_FOUND);
 
         Customer customer = baseModelMapper.map(customerDTO, Customer.class);
         return baseModelMapper.map(

@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,7 +31,7 @@ public class OrderGroup extends BaseEntity {
     @Column(name = "remarks")
     private String remarks;
 
-    @OneToMany(mappedBy = "orderGroup")
+    @OneToMany(mappedBy = "orderGroup", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
 
     @ManyToOne(optional = false)
